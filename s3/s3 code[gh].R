@@ -27,7 +27,7 @@ pacman::p_load(
 )
 
 
-t1 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%202/s_1_df.RDS" %>%
+t1 <- "https://github.com/thomasjwood/false_alarm/raw/master/s3/s_1_df.RDS" %>%
   url %>% 
   gzcon %>% 
   readRDS %>% 
@@ -41,7 +41,7 @@ t2 <- t1 %>%
          data = i) %>%
       tidy,   
     .collate = "rows"
-    ) %>% 
+  ) %>% 
   filter(term %>% 
            str_detect("corr2")) %>% 
   select(-term, -statistic) %>% 
@@ -53,16 +53,16 @@ t2 <- t1 %>%
       by_slice(
         function(i)
           lm(ans_num ~ corr2*ideo, 
-                 data = i) %>% 
-              emmeans(~corr2 | ideo) %>% 
-              pairs(rev = T) %>% 
-              tidy,
+             data = i) %>% 
+          emmeans(~corr2 | ideo) %>% 
+          pairs(rev = T) %>% 
+          tidy,
         .collate = "rows") %>% 
       select(-level1, -level2, -statistic, -df) %>% 
       tbl_df %>% 
       rename("yax" = ideo) %>% 
       mutate(type = "Effects by ideology")
-    ) %>% 
+  ) %>% 
   # now, differences by ideology
   rbind.fill(
     t1 %>%
@@ -213,9 +213,9 @@ t2$type %<>%
 t2$yax %<>% 
   mapvalues(
     3:1,
-   c("Liberal",
-     "Moderate",
-     "Conservative") 
+    c("Liberal",
+      "Moderate",
+      "Conservative") 
   ) %>% 
   factor(
     t2$yax %>% 
@@ -225,8 +225,8 @@ t2$yax %<>%
         c("Liberal",
           "Moderate",
           "Conservative")
-        )
-    )
+      )
+  )
 
 
 t2 %>% 
@@ -285,7 +285,7 @@ t2 %>%
 
 # Attrition estimates
 
-t6 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%202/s_2_df.RDS" %>%
+t6 <- "https://github.com/thomasjwood/false_alarm/raw/master/s3/s_2_df.RDS" %>%
   url %>% 
   gzcon %>% 
   readRDS %>% 
@@ -447,5 +447,4 @@ t8 %>%
   theme(
     legend.position = "bottom"
   )
-
 
