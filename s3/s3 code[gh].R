@@ -238,7 +238,6 @@ t2 %>%
              label.padding = unit(.125, units = "lines"), 
              nudge_x = .25,
              # vjust = -1,
-             family = "Roboto",
              label.size = NA,
              fill = "grey96",
              fontface = "italic",
@@ -270,7 +269,7 @@ t2 %>%
        shape = "",
        caption = "***p < .001, **p < .01, *p < .05"
   ) +
-  theme_minimal(base_family = "Roboto") +
+  theme_minimal() +
   theme(legend.text = element_text(size = 11),
         plot.caption = element_text(face = "italic"),
         plot.title = element_text(face = "bold",
