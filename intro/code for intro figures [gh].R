@@ -47,8 +47,6 @@ lmm <- lmer(
 
 # showing issue specific combination of random and fixed effects
 
-rr_1 <- emmeans(lmm,  ~ cor | type * item)
-
 rr1 <-REsim(lmm, n.sims = 5000, oddsRatio = F) 
 
 # labelling group IDs
@@ -78,7 +76,7 @@ rr1$groupID %<>%
       "Apolitical: Brain commonly uses 10% of power", 
       "Political: GOP tax cut provides 85% benefits to wealthy (Pelosi)",
       "Apolitical: Toilets flush opposite directions in hemispheres",
-
+      
       "Political: GOP passes first military pay raise in decades (Trump)", 
       "Apolitical: Microwave plastic imparts chemicals",
       "Political: McDonalds workers earn $7k/year (Omar)",
@@ -94,7 +92,7 @@ rr1$groupID %<>%
       "Apolitical: Napoleon very short",
       "Apolitical: Edison invented light bulb", 
       "Apolitical: Stress causes ulcers")
-    )
+  )
 
 rr2 <- rr1 %>% 
   filter(
@@ -181,14 +179,14 @@ rr2 %>%
   scale_y_discrete(
     breaks = rr2$groupID %>% levels,
     labels = rr2$groupID %>%
+      levels %>% 
+      str_sub(
+        rr2$groupID %>% 
           levels %>% 
-          str_sub(
-            rr2$groupID %>% 
-              levels %>% 
-              str_locate(fixed(":")) %>% 
-              extract(, 2) %>% 
-              add(2)
-          ),
+          str_locate(fixed(":")) %>% 
+          extract(, 2) %>% 
+          add(2)
+      ),
     expand = c(.075, .075)
   ) +
   labs(
