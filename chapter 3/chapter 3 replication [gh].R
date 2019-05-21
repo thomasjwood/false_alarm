@@ -203,7 +203,6 @@ ed1 %>%
       aes(party_num, estimate, label = est_lab),
       size = 2,
       color = "black",
-      family = "Roboto",
       data = bub_lab %>%
         filter(
           rowvar %>% 
@@ -243,7 +242,7 @@ ed1 %>%
         as.character %>% 
         str_replace(fixed("0."), ".")
     ) +
-    theme_minimal(base_family = "Roboto") +
+    theme_minimal() +
     theme(
       panel.background  =  element_rect(
         color =  "grey95",
@@ -505,8 +504,7 @@ ef2 %>%
     ),
     size = 1.7,
     angle = 90,
-    fontface = "italic",
-    family = "Roboto"
+    fontface = "italic"
   ) +
   scale_x_continuous(
     expand = c(.05, .03),
@@ -516,7 +514,7 @@ ef2 %>%
                "Strong\nRep")
   ) +
   facet_grid(sample ~ cond_consec) +
-  theme_minimal(base_family = "Roboto") +
+  theme_minimal() +
   labs(
     # title = "Paris climate agreement correction effects, by partisanship and sample",
     x = "Partisanship",
@@ -645,7 +643,6 @@ lt %>%
       ),
     angle = c(22.5, 20, 27.5, 36.5),
     size = 2.5,
-    family = "Roboto",
     fontface = "italic"
   ) +
   facet_wrap(
@@ -680,7 +677,7 @@ lt %>%
     x = "",
     y = "Agreement with Trump statement"
   ) +
-  theme_minimal(base_family = "Roboto") +
+  theme_minimal() +
   theme(panel.background  = 
           element_rect(color = "grey95",
                        fill = "grey95"),
@@ -904,7 +901,7 @@ nv2 %>%
     x = "",
     y = "Differences along 5 point scale of agreement.\nPositive values indicate increased inaccuracy."
   ) +
-  theme_minimal(base_family = "Roboto") +
+  theme_minimal() +
   theme(
     panel.background  =  element_rect(
       color =  "grey95",
@@ -1106,7 +1103,7 @@ nv1 %>%
       ideol, estimate, label = lab
     ),
     size = 2.4,
-    family = "Roboto",
+
     data = p_nv_bubs
   ) +
   facet_grid(
@@ -1125,7 +1122,7 @@ nv1 %>%
     x = "",
     y = "Differences along 5 point scale of agreement.\nPositive values indicate increased accuracy."
   ) +
-  theme_minimal(base_family = "Roboto") +
+  theme_minimal() +
   theme(
     panel.background  =  element_rect(
       color =  "grey95",
@@ -1509,7 +1506,6 @@ t8 %>%
           as.numeric,
         mid, 
         label = lab),
-    family = "Roboto",
     size = 2.05,
     data = t8 %>% 
       filter(
@@ -1542,7 +1538,6 @@ t8 %>%
     fill = "grey95",
     aes(label = lab,
         y = e2 %>% add(.15)),
-    family = "Roboto",
     x = 1.5,
     size = 2.75,
     data = t7
@@ -1569,7 +1564,7 @@ t8 %>%
     y = "",
     fill = ""
   ) +
-  theme_minimal(base_family = "Roboto") +
+  theme_minimal() +
   theme(
     panel.background  =  element_rect(
       color =  "grey95",
