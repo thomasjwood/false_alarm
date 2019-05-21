@@ -26,7 +26,7 @@ pacman::p_load(
 )
 
 
-t1 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%203/s_1_t.RDS" %>%
+t1 <- "https://github.com/thomasjwood/false_alarm/raw/master/s4/s_1_t.RDS" %>%
   url %>%
   gzcon %>%
   readRDS %>%
@@ -267,7 +267,7 @@ ed1 %>%
 
 # comparing turk and rdd samples
 
-t2 <-  "https://github.com/thomasjwood/false_alarm/raw/master/chapter%203/s_2_t.RDS" %>%
+t2 <-  "https://github.com/thomasjwood/false_alarm/raw/master/s4/s_2_t.RDS" %>%
   url %>%
   gzcon %>%
   readRDS %>%
@@ -543,7 +543,7 @@ ef2 %>%
 
 
 # figure 4.3
-t4 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%203/s_3_t.RDS" %>%
+t4 <- "https://github.com/thomasjwood/false_alarm/raw/master/s4/s_3_t.RDS" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
@@ -696,7 +696,7 @@ lt %>%
 
 # The syntax below replicates the figures 4.4 and 4.5 
 
-t5 <-  "https://github.com/thomasjwood/false_alarm/raw/master/chapter%203/s_4_t.RDS" %>%
+t5 <-  "https://github.com/thomasjwood/false_alarm/raw/master/s4/s_4_t.RDS" %>%
   url %>%
   gzcon %>%
   readRDS %>%
@@ -1207,7 +1207,7 @@ t2 <- t5 %>%
 
 # figure 4,6
 
-t6 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%203/s_5_t.RDS" %>%
+t6 <- "https://github.com/thomasjwood/false_alarm/raw/master/s4/s_5_t.RDS" %>%
   url %>%
   gzcon %>%
   readRDS %>%
@@ -1577,7 +1577,6 @@ t8 %>%
     plot.title = element_text(face = "bold", hjust = 0),
     plot.caption = element_text(face = "italic"),
     legend.position = "bottom") 
-
 
 
 
