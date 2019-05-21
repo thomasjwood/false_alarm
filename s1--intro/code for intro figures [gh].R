@@ -27,8 +27,10 @@ pacman::p_load(
 )
 
 
+
+
 # raw survey data for figures 1.1 and 1.2
-d1 <- "https://github.com/thomasjwood/false_alarm/raw/intro/d1_fig1_fig2.rds" %>% 
+d1 <- "https://github.com/thomasjwood/false_alarm/raw/master/s1--intro/d1_fig1_fig2.rds" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
