@@ -2025,7 +2025,7 @@ t23$item %<>%
       "Workers more taxed than bankers (Clinton)(1)",
       "Surge in killings of police (Cruz)(1)", 
       "Most prisoners serve drug sentences (Obama)(1)",
-      "Obama accomodates undocumented (Gutiérrez)(2)",
+      "Obama accomodates undocumented (Gutierrez)(2)",
       "Obama accomodates undocumented (Cruz)(2)"
     )
   )
