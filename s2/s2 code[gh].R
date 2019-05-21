@@ -24,12 +24,11 @@ pacman::p_load(
   magrittr, emmeans, broom, 
   purrrlyr, ggstance, plotrix,
   furrr
-  )
-
+)
 
 
 # loading the most important problem data set, and aggregating over issue types
-t1 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/USMISC2015-MIPD_ind.rds" %>%
+t1 <- "https://github.com/thomasjwood/false_alarm/raw/master/s2/USMISC2015-MIPD_ind.rds" %>%
   url %>%
   gzcon %>%
   readRDS %>%
@@ -191,7 +190,7 @@ t1 %>%
   )
 
 # raw survey data for figure 2.3
-t3 <-  "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_1_mt.RDS"%>%
+t3 <-  "https://github.com/thomasjwood/false_alarm/raw/master/s2/s_1_mt.RDS" %>%
   url %>%
   gzcon %>%
   readRDS %>%
@@ -272,7 +271,7 @@ ct <- t3 %>%
   group_by(item) %>% 
   by_slice(
     function(i)
-
+      
       lm(ans ~ ideol * corr, data = i) %>% 
       emmeans(
         pairwise  ~ corr | ideol,
@@ -300,7 +299,7 @@ ct <- t3 %>%
           "Moderates",
           "Conservatives")
       )
-    )
+  )
 
 
 ct$item %<>% 
@@ -382,7 +381,7 @@ t4 %>%
     . ~ ideol, 
     scales = "free_x", 
     space = "free_x"
-    ) +
+  ) +
   scale_x_continuous(
     breaks = 2:4
   ) +
@@ -420,7 +419,7 @@ t4 %>%
 
 
 
-t5 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_2_mt.RDS" %>% 
+t5 <- "https://github.com/thomasjwood/false_alarm/raw/master/s2/s_2_mt.RDS" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
@@ -432,7 +431,7 @@ t5 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_2_mt.
 t6 <- t5 %>%
   group_by(
     item
-    ) %>% 
+  ) %>% 
   by_slice(
     function(i)
       
@@ -448,7 +447,7 @@ t6 <- t5 %>%
           ) %>%
           tidy,
         .progress = T
-        ),
+      ),
     .collate = "rows"
   ) %>% 
   mutate(
@@ -457,7 +456,7 @@ t6 <- t5 %>%
         1:2,
         c("Correction",
           "No Correction"
-          )
+        )
       )
   )
 
@@ -500,7 +499,7 @@ t6$speaker <- case_when(
       c("Obama",  "Gutierrez",  "Longoria", "Lee")
     ) %>% 
     not ~ "Conservative Speaker"
-  )
+)
 
 
 # the item facets will be sorted by most to least ideological
@@ -519,7 +518,7 @@ t6$item2 %<>%
           lm(estimate ~ as.numeric(ideol)) %>% 
           tidy, 
         .collate = "rows"
-        ) %>% 
+      ) %>% 
       filter(
         term %>% 
           str_detect(
@@ -536,13 +535,13 @@ t6$item2 %<>%
 ct5 <- t5 %>%
   group_by(
     item
-    ) %>% 
+  ) %>% 
   by_slice(
     function(i)
       lm(
         ans ~ ideol * corr,
         data =i
-        ) %>% 
+      ) %>% 
       emmeans(
         pairwise  ~ corr | ideol,
         at = list(ideol = c(1, 4, 7))
@@ -559,17 +558,17 @@ ct5 <- t5 %>%
       ifelse("sig", "insig"),
     ideol = ideol %>% 
       mapvalues(
-          c(1, 4, 7),
-          c("Liberals",
-            "Moderates",
-            "Conservatives")
-        ) %>% 
-        factor(
-          c("Liberals",
-            "Moderates",
-            "Conservatives")
-        )
-    )
+        c(1, 4, 7),
+        c("Liberals",
+          "Moderates",
+          "Conservatives")
+      ) %>% 
+      factor(
+        c("Liberals",
+          "Moderates",
+          "Conservatives")
+      )
+  )
 
 
 t6_l <- t6 %>% 
@@ -631,7 +630,7 @@ t6 %>%
     aes(mu, speaker, label = lab),
     size = 2,
     data = t6_l_2
-    ) +
+  ) +
   scale_y_discrete(
     breaks = t6$speaker %>% 
       factor %>% 
@@ -645,7 +644,7 @@ t6 %>%
     data = t6_l_2 %>% 
       filter(
         ideol == "Liberals" &
-        item2 %>% 
+          item2 %>% 
           str_detect("Obama restricts ")
       ) %>% 
       select(item2, ideol) %>% 
@@ -731,7 +730,8 @@ t6_l_2 %>%
 
 # simulation for figure 2.5
 
-t7 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_3_mt.RDS" %>% 
+
+t7 <- "https://github.com/thomasjwood/false_alarm/raw/master/s2/s_3_mt.RDS" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
@@ -740,7 +740,7 @@ t7 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_3_mt.
 t8 <- t7 %>% 
   group_by(
     item
-    ) %>% 
+  ) %>% 
   by_slice(
     function(i)
       
@@ -776,36 +776,36 @@ t8$ideol %<>%
 
 t8$corr %<>% 
   mapvalues(
-  1:2,
-  c("Correction",
-    "No Correction")
+    1:2,
+    c("Correction",
+      "No Correction")
   )
 
 # ordering items by ideological difference
 t8$item %<>% 
-    factor(
-      t8 %>%
-        filter(
-          corr == "Correction"
-        ) %>% 
-        group_by(
-          item
-        ) %>%
-        by_slice(
-          function(i)
-            lm(
-              estimate ~ as.numeric(ideol), 
-              data = i
-            ) %>% 
-            tidy,
-          .collate = "rows"
-        ) %>% 
-        filter(
-          term %>% 
-            str_detect(
-              "ideol"
-            )
-        ) %>% 
+  factor(
+    t8 %>%
+      filter(
+        corr == "Correction"
+      ) %>% 
+      group_by(
+        item
+      ) %>%
+      by_slice(
+        function(i)
+          lm(
+            estimate ~ as.numeric(ideol), 
+            data = i
+          ) %>% 
+          tidy,
+        .collate = "rows"
+      ) %>% 
+      filter(
+        term %>% 
+          str_detect(
+            "ideol"
+          )
+      ) %>% 
       arrange(
         estimate
       ) %>% 
@@ -815,13 +815,13 @@ t8$item %<>%
 ct7 <- t7 %>%
   group_by(
     item
-    ) %>% 
+  ) %>% 
   by_slice(
     function(i)
       lm(
         ans ~ ideol * corr,
         data = i
-        ) %>% 
+      ) %>% 
       emmeans(
         pairwise  ~ corr | ideol,
         at = list(ideol = c(1, 4, 7))
@@ -850,7 +850,7 @@ ct7 <- t7 %>%
           "Moderates",
           "Conservatives")
       )
-    )
+  )
 
 
 t8_l <- t8 %>% 
@@ -897,7 +897,7 @@ t8 %>%
       filter(
         corr == "Correction"
       )
-    ) +
+  ) +
   geom_point(
     shape = 21,
     aes(mu, item),
@@ -916,7 +916,7 @@ t8 %>%
       filter(
         corr != "Correction"
       )
-    ) +
+  ) +
   geom_text(
     aes(x, item, label = lab),
     size = 2.5,
@@ -986,7 +986,7 @@ t8 %>%
 
 # The item complexity bootstrap--figure 2.6
 
-t9 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_4_mt.RDS" %>% 
+t9 <- "https://github.com/thomasjwood/false_alarm/raw/master/s2/s_4_mt.RDS" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
@@ -999,7 +999,7 @@ nd2 <- expand.grid(
   ans_type = c("item_short",
                "item_long"),
   cor = c("C", "NC")
-  ) %>% 
+) %>% 
   tbl_df
 
 # bootstrapped complxity data
@@ -1013,7 +1013,7 @@ t10 <- 1e3 %>%
       predict(newdata = nd2) %>%
       cbind(nd2, .), 
     .id = 'iter'
-    ) %>% 
+  ) %>% 
   tbl_df
 
 names(t10)[5] <- "pred"
@@ -1043,7 +1043,7 @@ t12 <- t11 %>%
         hi_fit = loess(hi ~ ideol, data = i) %>%
           use_series(fitted)),
     .collate = "rows"
-    ) %>% 
+  ) %>% 
   tbl_df %>% 
   mutate(ans_type = ans_type %>% 
            mapvalues(str_c("item_",
@@ -1150,7 +1150,7 @@ ggplot() +
             linetype = 2,
             t14 %>% 
               filter(mu %>% is.na)
-            ) +
+  ) +
   geom_segment(aes(x = x, xend = xend,
                    y = y, yend = yend),
                color = "grey50",
@@ -1238,7 +1238,7 @@ ggplot() +
 
 # complexity as point range--figure 2.7
 
-t15 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_5_mt.RDS" %>% 
+t15 <- "https://github.com/thomasjwood/false_alarm/raw/master/s2/s_5_mt.RDS" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
@@ -1251,7 +1251,7 @@ t15 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_5_mt
 t16 <- t15 %>% 
   group_by(
     item
-    ) %>% 
+  ) %>% 
   by_slice(
     function(i)
       lm(
@@ -1482,7 +1482,7 @@ t16 %>%
 
 # accordance and correction size
 
-t18 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_6_mt.RDS" %>% 
+t18 <- "https://github.com/thomasjwood/false_alarm/raw/master/s2/s_6_mt.RDS" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
@@ -1580,7 +1580,7 @@ t18_1 <- 1000 %>%
   )
 
 
-t20 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_7_mt.RDS" %>% 
+t20 <- "https://github.com/thomasjwood/false_alarm/raw/master/s2/s_7_mt.RDS" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
@@ -1826,42 +1826,42 @@ ggplot() +
                    fill = "grey98"))
 
 # Correction effect by time
-t22 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_8_mt.RDS" %>% 
+t22 <- "https://github.com/thomasjwood/false_alarm/raw/master/s2/s_8_mt.RDS" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
   tbl_df
 
 t22 %<>% 
-  {
-    
-    
-    j <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_9_mt.RDS" %>% 
-      url %>%
-      gzcon %>%
-      readRDS %>%
-      tbl_df
-    
-    j$date[4] <- "_2014-11-05"
-    
-    j %<>%  mutate(
-      date = date %>%
-        str_sub(2) %>%
-        as.Date
+{
+  
+  
+  j <- "https://github.com/thomasjwood/false_alarm/raw/master/s2/s_9_mt.RDS" %>% 
+    url %>%
+    gzcon %>%
+    readRDS %>%
+    tbl_df
+  
+  j$date[4] <- "_2014-11-05"
+  
+  j %<>%  mutate(
+    date = date %>%
+      str_sub(2) %>%
+      as.Date
+  )
+  
+  t22  %>% 
+    left_join(
+      j %>% 
+        select(
+          item, date
+        )
     )
-    
-    t22  %>% 
-      left_join(
-        j %>% 
-          select(
-            item, date
-          )
-      )
-  }
+}
 
 t23 <- t22 %>% 
   group_by(
-  study, item
+    study, item
   ) %>% 
   by_slice(
     possibly(
@@ -1873,11 +1873,11 @@ t23 <- t22 %>%
           emmeans(~corr) %>% 
           pairs(reverse = T, ) %>%
           tidy
-        },
+      },
       otherwise = NULL
-      ),
+    ),
     .collate = "rows"
-    ) %>% 
+  ) %>% 
   tbl_df %>% 
   mutate(
     type = "Overall"
@@ -1886,7 +1886,7 @@ t23 <- t22 %>%
     t22 %>%
       group_by(
         study, item
-        ) %>% 
+      ) %>% 
       by_slice(
         possibly(
           function(i){
@@ -1964,7 +1964,7 @@ t23$type %<>%
   factor(
     t23$type %>%
       unique
-    )
+  )
 
 t23$item %<>% 
   factor(
@@ -2108,7 +2108,7 @@ t24 %>%
   labs(
     x = "Correction effect (difference on 5pt scale)",
     y = ""
-    ) +
+  ) +
   theme_minimal() +
   theme(
     axis.text.y = element_text(
@@ -2127,6 +2127,5 @@ t24 %>%
     legend.margin  = margin(-.2, unit = "cm"),
     legend.position = "none"
   )
-
 
 
