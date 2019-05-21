@@ -26,9 +26,9 @@ if(
 pacman::p_load(
   plyr, tidyverse, magrittr,
   lubridate, RcppRoll
-  )
+)
 
-t1 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%204/s_1_t.rds" %>% 
+t1 <- "https://github.com/thomasjwood/false_alarm/raw/master/s5/s_1_t.rds" %>% 
   url %>%
   gzcon %>%
   readRDS %>%
@@ -124,7 +124,7 @@ t1 %>%
         legend.position = "none") 
 
 
-t2 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%204/s_2_t.rds" %>% 
+t2 <- "https://github.com/thomasjwood/false_alarm/raw/master/s5/s_2_t.rds" %>% 
   url %>%
   gzcon %>%
   readRDS
@@ -184,7 +184,7 @@ t2[[1]] %>%
 
 # evolution
 
-t3 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%204/s_3_t.rds" %>% 
+t3 <- "https://github.com/thomasjwood/false_alarm/raw/master/s5/s_3_t.rds" %>% 
   url %>%
   gzcon %>%
   readRDS
@@ -255,7 +255,7 @@ ggplot() +
 
 
 
-t4 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%204/s_4_t.rds" %>% 
+t4 <- "https://github.com/thomasjwood/false_alarm/raw/master/s5/s_4_t.rds" %>% 
   url %>%
   gzcon %>%
   readRDS
@@ -269,14 +269,14 @@ ggplot() +
       filter(
         ans != "dk"
       )
-    ) +
+  ) +
   geom_step(
     aes(date, smu, linetype = ans),
     data = t4[[1]] %>% 
       filter(
         ans != "dk"
       )
-    ) +
+  ) +
   geom_point(
     aes(date, smu),
     size = 8,
@@ -348,6 +348,5 @@ ggplot() +
     panel.background = element_rect(fill = "grey98",
                                     color = "grey98"),
     plot.caption = element_text(face = "italic")) 
-
 
 
