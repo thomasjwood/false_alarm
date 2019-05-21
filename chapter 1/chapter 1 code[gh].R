@@ -1596,7 +1596,7 @@ t20 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%201/s_7_mt
                   "Surge in killings of police officers (Cruz)(1)",
                   "US taxes highest in world (Trump)(1)",
                   "Obama accomodates undoc. immigrants (Cruz)(2)",          
-                  "Obama accomodates undoc. immigrants (Gutiérrez)(2)",
+                  "Obama accomodates undoc. immigrants (Gutierrez)(2)",
                   "Spiraling teen pregnancy rate (Carson)(2)",
                   "Spiraling teen pregnancy rate (Lee)(2)",                 
                   "Obama passed TARP (Palin)(2)",
@@ -2013,7 +2013,7 @@ t23$item %<>%
       "EPA Says Fracking Pollutes Drinking Water (Sanders)(4)", "2x employed in Solar Power compared to Oil (Clinton)(4)", 
       "Workers pay more tax than h.fund managers (Clinton)(1)", "Surge in killings of police officers (Cruz)(1)", 
       "Most prisoners serving drug sentences (Obama)(1)",
-      "Obama accomodates undoc. immigrants (Gutiérrez)(2)",
+      "Obama accomodates undoc. immigrants (GutiÃ©rrez)(2)",
       "Obama accomodates undoc. immigrants (Cruz)(2)"
     ),
     c("EPA-Fracking Pollutes Water (Sanders)",
@@ -2025,7 +2025,7 @@ t23$item %<>%
       "Workers more taxed than bankers (Clinton)(1)",
       "Surge in killings of police (Cruz)(1)", 
       "Most prisoners serve drug sentences (Obama)(1)",
-      "Obama accomodates undocumented (Gutiérrez)(2)",
+      "Obama accomodates undocumented (GutiÃ©rrez)(2)",
       "Obama accomodates undocumented (Cruz)(2)"
     )
   )
