@@ -79,7 +79,6 @@ t1 %>%
     size = 3.25,
     color = "gray50",
     fontface = "italic",
-    family = "Roboto",
     data = ldf
   ) +
   facet_grid(
@@ -102,7 +101,7 @@ t1 %>%
     x = "",
     y = "Correction effect (difference on 5pt scale)"
   ) +
-  theme_minimal(base_family = "Roboto") +
+  theme_minimal() +
   theme(panel.background  = 
           element_rect(color = "grey95",
                        fill = "grey95"),
@@ -145,8 +144,7 @@ t2[[1]] %>%
   geom_text(
     aes(dates, val, label = val),
     size = 2.5,
-    data = t2[[2]],
-    family = "Roboto"
+    data = t2[[2]]
   ) +
   geom_text(
     aes(dates, val, label = lab),
@@ -218,7 +216,6 @@ ggplot() +
     size = 3,
     shape = 21,
     fill = "white",    
-    family = "Roboto",
     data = t3[[1]] %>% 
       na.omit %>% 
       group_by(ans) %>%
@@ -232,15 +229,14 @@ ggplot() +
     ),
     fontface = "italic",
     data = t3[[2]],
-    lineheight = .7,
-    family = "Roboto"
+    lineheight = .7
   ) +
   labs(x = "",
        y = "") +
   scale_shape_manual(
     values = c(21, 16, 17)
   ) +
-  theme_minimal(base_family = "Roboto") +
+  theme_minimal() +
   theme(
     legend.position = "none",
     plot.title = element_text(face = "bold",
