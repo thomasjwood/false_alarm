@@ -154,117 +154,117 @@ bub_lab <- ed1 %>%
 # produces figure 4.1
 
 ed1 %>%
-    filter(
-      rowvar %>% 
-        str_detect(
-          "Subtracted Items", 
-          T)
-      ) %>% 
-    ggplot() +
-    geom_blank(
-      aes(x = party_num, 
-          ymin = low, 
-          ymax = hi)
-    ) +
-    geom_hline(
-      aes(yintercept = 0),
-      linetype = "dashed",
-      data = h_l %>%
-        filter(
-          rowvar %>% 
-            str_detect(
-              "Subtracted Items", 
-              T)
-        )
-    ) +
-    geom_ribbon(
-      size = .25,
-      fill = "grey75",
-      color = "grey10",
-      alpha = .5,
-      aes(x = party_num, 
-          ymin = low, 
-          ymax = hi)
-    ) +
-    geom_point(
-      aes(party_num, estimate),
-      size = 6,
-      shape = 21,
-      fill = "grey98",
-      data = bub_lab %>%
-        filter(
-          rowvar %>% 
-            str_detect(
-              "Subtracted Items", 
-              T)
-        )
-    ) +
-    geom_text(
-      aes(party_num, estimate, label = est_lab),
-      size = 2,
-      color = "black",
-      data = bub_lab %>%
-        filter(
-          rowvar %>% 
-            str_detect(
-              "Subtracted Items", 
-              T)
-        )
-    ) +
-    facet_grid(
-      rowvar ~ cond,
-      scales = "free_y",
-      space = "free_y",
-      labeller = label_wrap_gen(width = 15)
-    ) +
-    scale_x_continuous(
-      expand = c(.045, .045),
-      breaks = c(1.5, 3, 4.5),
-      labels = c("Strong\nDem",
-                 "Ind",
-                 "Strong\nRep")
-    ) +
-    labs(
-      x = "Partisanship",
-      y = ""
-    ) +
-    scale_y_continuous(
-      breaks = c(
-        seq(-.9, .6, .3),
-        seq(1.5, 3, .5)
-      ) %>% 
-        round(1),
-      labels = c(
-        seq(-.9, .6, .3),
-        seq(1.5, 3, .5)
-      ) %>% 
-        round(1) %>% 
-        as.character %>% 
-        str_replace(fixed("0."), ".")
-    ) +
-    theme_minimal() +
-    theme(
-      panel.background  =  element_rect(
-        color =  "grey95",
-        fill = "grey95"
-      ),
-      panel.grid = element_blank(),
-      strip.background = element_rect(
-        color =  "grey95",
-        fill = "grey95"
-      ),
-      strip.text.y = element_text(angle = 0),
-      # axis.text.x = element_text(size = 6),
-      legend.background = element_rect(color = "white",
-                                       fill = "white"),
-      legend.margin = margin(-.8, 0, 0, 0, "cm"),
-      panel.grid.minor = element_blank(),
-      # panel.grid.major.x = element_blank(),
-      plot.title = element_text(face = "bold", hjust = 0),
-      plot.caption = element_text(face = "italic"),
-      legend.position = "none") 
-  
-  
+  filter(
+    rowvar %>% 
+      str_detect(
+        "Subtracted Items", 
+        T)
+  ) %>% 
+  ggplot() +
+  geom_blank(
+    aes(x = party_num, 
+        ymin = low, 
+        ymax = hi)
+  ) +
+  geom_hline(
+    aes(yintercept = 0),
+    linetype = "dashed",
+    data = h_l %>%
+      filter(
+        rowvar %>% 
+          str_detect(
+            "Subtracted Items", 
+            T)
+      )
+  ) +
+  geom_ribbon(
+    size = .25,
+    fill = "grey75",
+    color = "grey10",
+    alpha = .5,
+    aes(x = party_num, 
+        ymin = low, 
+        ymax = hi)
+  ) +
+  geom_point(
+    aes(party_num, estimate),
+    size = 6,
+    shape = 21,
+    fill = "grey98",
+    data = bub_lab %>%
+      filter(
+        rowvar %>% 
+          str_detect(
+            "Subtracted Items", 
+            T)
+      )
+  ) +
+  geom_text(
+    aes(party_num, estimate, label = est_lab),
+    size = 2,
+    color = "black",
+    data = bub_lab %>%
+      filter(
+        rowvar %>% 
+          str_detect(
+            "Subtracted Items", 
+            T)
+      )
+  ) +
+  facet_grid(
+    rowvar ~ cond,
+    scales = "free_y",
+    space = "free_y",
+    labeller = label_wrap_gen(width = 15)
+  ) +
+  scale_x_continuous(
+    expand = c(.045, .045),
+    breaks = c(1.5, 3, 4.5),
+    labels = c("Strong\nDem",
+               "Ind",
+               "Strong\nRep")
+  ) +
+  labs(
+    x = "Partisanship",
+    y = ""
+  ) +
+  scale_y_continuous(
+    breaks = c(
+      seq(-.9, .6, .3),
+      seq(1.5, 3, .5)
+    ) %>% 
+      round(1),
+    labels = c(
+      seq(-.9, .6, .3),
+      seq(1.5, 3, .5)
+    ) %>% 
+      round(1) %>% 
+      as.character %>% 
+      str_replace(fixed("0."), ".")
+  ) +
+  theme_minimal() +
+  theme(
+    panel.background  =  element_rect(
+      color =  "grey95",
+      fill = "grey95"
+    ),
+    panel.grid = element_blank(),
+    strip.background = element_rect(
+      color =  "grey95",
+      fill = "grey95"
+    ),
+    strip.text.y = element_text(angle = 0),
+    # axis.text.x = element_text(size = 6),
+    legend.background = element_rect(color = "white",
+                                     fill = "white"),
+    legend.margin = margin(-.8, 0, 0, 0, "cm"),
+    panel.grid.minor = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    plot.title = element_text(face = "bold", hjust = 0),
+    plot.caption = element_text(face = "italic"),
+    legend.position = "none") 
+
+
 # comparing turk and rdd samples
 
 t2 <-  "https://github.com/thomasjwood/false_alarm/raw/master/chapter%203/s_2_t.RDS" %>%
@@ -280,22 +280,22 @@ t3 <- t2 %>%
       mutate(
         sample = "combined"
       )
-    ) %>% 
+  ) %>% 
   group_by(sample) %>% 
   by_slice(
     function(i)
       lm(
         paris_num ~ party_num * cond, 
         data = i)
-    )
-  
+  )
+
 
 nd <- expand.grid(
   party_num = seq(1, 5, length.out = 300),
   cond = t2$cond %>% 
     factor %>% 
     levels
-  ) %>% 
+) %>% 
   tbl_df
 
 pdat <- map2_dfr(
@@ -319,9 +319,9 @@ pdat <- map2_dfr(
       sample = h %>% 
         factor(
           c("rdd", "turk", "combined")
-          )
-      )
-  ) %>% 
+        )
+    )
+) %>% 
   mutate(
     cond = cond %>% 
       factor(
@@ -351,33 +351,33 @@ pdat <- map2_dfr(
 ef <- map2_dfr(
   t3$sample,
   t3$.out,
-    function(h, i)
-      
-      # i <- t3$.out[[1]]
-      
-      i %>% 
-      emmeans(
-        ~ cond | party_num, 
-        at = list(party_num = seq(1, 5, length.out = 300))
-      ) %>%
-      contrast(interaction = c("consec")) %>% 
-      # pairs(reverse = T) %>%
-      tidy %>% 
-      tbl_df %>% 
-      # modify_at(
-      #   1:2,
-      #   str_trim
-      # ) %>%
-      # filter(
-      #   level2 == "items"
-      # ) %>%
-      select(
-        cond_consec:std.error, p.value
-      ) %>% 
+  function(h, i)
+    
+    # i <- t3$.out[[1]]
+    
+    i %>% 
+    emmeans(
+      ~ cond | party_num, 
+      at = list(party_num = seq(1, 5, length.out = 300))
+    ) %>%
+    contrast(interaction = c("consec")) %>% 
+    # pairs(reverse = T) %>%
+    tidy %>% 
+    tbl_df %>% 
+    # modify_at(
+    #   1:2,
+    #   str_trim
+    # ) %>%
+    # filter(
+    #   level2 == "items"
+    # ) %>%
+    select(
+      cond_consec:std.error, p.value
+    ) %>% 
     mutate(
       sample = h
-      )
-  ) %>% 
+    )
+) %>% 
   # rename(level1 = level2)
   # ) %>%
   rename(
@@ -417,14 +417,14 @@ ef2 <- ef %>%
         c("Combined\nSamples",
           "Random\nDigit\nDialer",
           "MTurk")
-        ) %>% 
+      ) %>% 
       factor(
         c("Combined\nSamples",
           "Random\nDigit\nDialer",
           "MTurk") %>% 
           rev
-        )
-    )
+      )
+  )
 
 
 labs2 <- ef2 %>%
@@ -486,8 +486,7 @@ ef2 %>%
   geom_text(
     aes(party_num, fit, label = fl),
     data = labs2,
-    size = 1.9,
-    family = "Roboto"
+    size = 1.9
   ) +
   geom_text(
     aes(x, y, label =  lab),
@@ -540,7 +539,7 @@ ef2 %>%
     plot.title = element_text(face = "bold", hjust = 0),
     plot.caption = element_text(face = "italic"),
     legend.position = "none"
-    ) 
+  ) 
 
 
 # figure 4.3
@@ -556,7 +555,7 @@ ml <- t4 %>%
   ) %>% 
   by_slice(
     ~lm(ans_num ~ cond * ideol_num, data = .)
-    )
+  )
 
 lt <- pmap_dfr(
   list(
@@ -660,7 +659,7 @@ lt %>%
       "Neither agree\nnor disagree",
       "Somewhat\nagree",
       "Agree")
-    ) +
+  ) +
   scale_x_continuous(
     breaks = c(1.5, 4, 6.5),
     labels = c("Extremely Liberal",
@@ -708,7 +707,7 @@ t5 <-  "https://github.com/thomasjwood/false_alarm/raw/master/chapter%203/s_4_t.
 lm2 <- lm(
   facts_2_num ~ cond*ideol, 
   data = t5
-  ) 
+) 
 
 em2 <- emmeans(
   lm2, 
@@ -926,7 +925,7 @@ nv2 %>%
 lm1 <- lm(
   facts_1_num ~ cond*ideol, 
   data = t5
-  ) 
+) 
 
 em1 <- emmeans(
   lm1, 
@@ -935,7 +934,7 @@ em1 <- emmeans(
     ideol = seq(1, 7, length.out = 100)
   ),
   rev = T
-  )
+)
 
 nv1 <- em1 %>% 
   summary %>% 
@@ -1103,7 +1102,7 @@ nv1 %>%
       ideol, estimate, label = lab
     ),
     size = 2.4,
-
+    
     data = p_nv_bubs
   ) +
   facet_grid(
@@ -1225,7 +1224,7 @@ t6 <- "https://github.com/thomasjwood/false_alarm/raw/master/chapter%203/s_5_t.R
 t7 <- t6 %>% 
   group_by(
     speaker, topic
-    ) %>% 
+  ) %>% 
   by_slice(
     function(i)
       table(
@@ -1586,7 +1585,6 @@ t8 %>%
     plot.title = element_text(face = "bold", hjust = 0),
     plot.caption = element_text(face = "italic"),
     legend.position = "bottom") 
-
 
 
 
