@@ -2013,7 +2013,7 @@ t23$item %<>%
       "EPA Says Fracking Pollutes Drinking Water (Sanders)(4)", "2x employed in Solar Power compared to Oil (Clinton)(4)", 
       "Workers pay more tax than h.fund managers (Clinton)(1)", "Surge in killings of police officers (Cruz)(1)", 
       "Most prisoners serving drug sentences (Obama)(1)",
-      "Obama accomodates undoc. immigrants (Gutiérrez)(2)",
+      "Obama accomodates undoc. immigrants (Gutierrez)(2)",
       "Obama accomodates undoc. immigrants (Cruz)(2)"
     ),
     c("EPA-Fracking Pollutes Water (Sanders)",
