@@ -1147,16 +1147,12 @@ nv1 %>%
 
 t2 <- t5 %>% 
   select(
-    facts_1_num, facts_2, cond, ideol
+    facts_1_num, facts_2_num, cond, ideol
   ) %>% 
   mutate(
-    facts_1 = facts_1 %>% 
+    facts_1 = facts_1_num %>% 
       mapvalues(
-        c("Strongly Agree",
-          "Agree",
-          "Neither Agree nor Disagree",
-          "Disagree", 
-          "Strongly disagree"),
+        5:1,
         c("Agree",
           "Neither",
           "Disagree") %>% 
@@ -1167,13 +1163,9 @@ t2 <- t5 %>%
           "Neither",
           "Disagree")
       ),
-    facts_2 = facts_2 %>% 
+    facts_2 = facts_2_num %>% 
       mapvalues(
-        c("Strongly Agree",
-          "Agree",
-          "Neither Agree nor Disagree",
-          "Disagree", 
-          "Strongly disagree"),
+        5:1,
         c("Agree",
           "Neither",
           "Disagree") %>% 
