@@ -49,7 +49,7 @@ ed1 <- em1 %>%
   summary %>% 
   extract2("emmeans") %>% 
   as_tibble %>% 
-  select(1:4) %>% 
+  select(1:5) %>% 
   mutate(
     rowvar = "Fitted Values\n(larger values indicate agreement with incorrect position)"
   ) %>% 
@@ -61,7 +61,7 @@ ed1 <- em1 %>%
       summary %>% 
       extract2("contrasts") %>% 
       as_tibble %>% 
-      select(1:4) %>% 
+      select(1:5) %>% 
       mutate(
         rowvar = "Subtracted Items"
       ) %>% 
@@ -77,7 +77,7 @@ ed1 <- em1 %>%
       summary %>% 
       extract2("contrasts") %>% 
       as_tibble %>% 
-      select(1:4) %>% 
+      select(1:5) %>% 
       mutate(
         rowvar = "Subtracted Misstatement"
       ) %>% 
@@ -109,6 +109,16 @@ ed1 <- em1 %>%
       add(
         SE %>%
           multiply_by(1.96)
+      ),
+    p.val = c("***", "**", "*", "") %>% 
+      extract(
+        findInterval(
+          2*pt(
+            -abs(estimate/SE),
+            df = df-1
+          ),
+          c(-Inf, .001, .01, .05, Inf)
+        )
       )
   )
 
@@ -146,10 +156,18 @@ bub_lab <- ed1 %>%
     c(1, 50, 100)
   ) %>% 
   mutate(
-    est_lab = estimate %>%
-      round(1) %>% 
-      as.character
-  )
+    est_lab = rowvar %>% 
+      str_detect("Fitted") %>% 
+      ifelse(
+        estimate %>%
+          round(1) %>%
+          as.character,
+        estimate %>%
+          round(1) %>%
+          as.character %>% 
+          str_c(p.val)
+        )
+    )
 
 # produces figure 4.1
 
@@ -187,8 +205,10 @@ ed1 %>%
         ymax = hi)
   ) +
   geom_point(
-    aes(party_num, estimate),
-    size = 6,
+    aes(party_num, estimate,
+        size = rowvar %>% 
+          str_detect("Fitted") %>% 
+          ifelse("A", "B")),
     shape = 21,
     fill = "grey98",
     data = bub_lab %>%
@@ -210,19 +230,23 @@ ed1 %>%
             "Subtracted Items", 
             T)
       )
-  ) +
+    ) +
   facet_grid(
     rowvar ~ cond,
     scales = "free_y",
     space = "free_y",
     labeller = label_wrap_gen(width = 15)
   ) +
+  scale_size_manual(
+    values = c(6, 8), 
+    guide = "none"
+  ) +
   scale_x_continuous(
-    expand = c(.045, .045),
     breaks = c(1.5, 3, 4.5),
     labels = c("Strong\nDem",
                "Ind",
-               "Strong\nRep")
+               "Strong\nRep"),
+    expand = c(.075, .075)
   ) +
   labs(
     x = "Partisanship",
@@ -254,16 +278,13 @@ ed1 %>%
       fill = "grey95"
     ),
     strip.text.y = element_text(angle = 0),
-    # axis.text.x = element_text(size = 6),
     legend.background = element_rect(color = "white",
                                      fill = "white"),
     legend.margin = margin(-.8, 0, 0, 0, "cm"),
     panel.grid.minor = element_blank(),
-    # panel.grid.major.x = element_blank(),
     plot.title = element_text(face = "bold", hjust = 0),
     plot.caption = element_text(face = "italic"),
     legend.position = "none") 
-
 
 # comparing turk and rdd samples
 
@@ -1573,11 +1594,9 @@ t8 %>%
                                      fill = "white"),
     legend.margin = margin(-.8, 0, 0, 0, "cm"),
     panel.grid.minor = element_blank(),
-    # panel.grid.major.x = element_blank(),
     plot.title = element_text(face = "bold", hjust = 0),
     plot.caption = element_text(face = "italic"),
     legend.position = "bottom") 
-
 
 
 
