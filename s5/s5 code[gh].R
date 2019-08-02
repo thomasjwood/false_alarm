@@ -1,7 +1,3 @@
-# library(plyr)
-# library(tidyverse)
-# library(magrittr)
-
 # Replication data -- 
 # FALSE ALARM--the truth about political mistruth in the Trump era
 
